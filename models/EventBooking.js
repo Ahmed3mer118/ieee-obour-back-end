@@ -27,7 +27,7 @@ const eventBookingSchema = new mongoose.Schema({
         type: String,
         required: [true, 'National ID is required'],
         trim: true,
-        unique: false // Allow same person to register for different events
+        unique: false
     },
     academicYear: {
         type: String,
@@ -38,31 +38,6 @@ const eventBookingSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Academic division is required'],
         trim: true
-    },
-    paymentStatus: {
-        type: String,
-        enum: ['pending', 'paid', 'cancelled'],
-        default: 'pending'
-    },
-    paymentAmount: {
-        type: Number,
-        default: 0
-    },
-    paymentMethod: {
-        type: String,
-        default: ''
-    },
-    paymentReference: {
-        type: String,
-        default: ''
-    },
-    paymentDate: {
-        type: Date,
-        default: null
-    },
-    isConfirmed: {
-        type: Boolean,
-        default: false
     },
     notes: {
         type: String,
@@ -78,4 +53,3 @@ eventBookingSchema.index({ eventId: 1, nationalId: 1 }, { unique: true });
 const EventBooking = mongoose.model('EventBooking', eventBookingSchema);
 
 export default EventBooking;
-
